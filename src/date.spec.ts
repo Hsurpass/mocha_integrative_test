@@ -13,36 +13,35 @@ describe("date", () => {
         console.log(date.setSeconds(0, 0));  // 1611453600000
 
     });
+
+    it('test roundDepartureTime', () => {
+        function roundDepartureTime(departureTime: Date, timeInterval: number): Date {
+            departureTime.setSeconds(0, 0);
+            let departureTimestamp = departureTime.getTime() - 1;
+            departureTimestamp += timeInterval * 60 * 1000;
+
+            const intervalMillionSeconds = timeInterval * 60 * 1000;
+            departureTimestamp = Math.round(departureTimestamp / intervalMillionSeconds - 0.5) * intervalMillionSeconds;
+            return new Date(departureTimestamp);
+        }
+
+        // 2021-01-24 9:45:00
+        const startStamp = new Date(1611452700000);
+        console.log("startStamp:", startStamp);     // 2021-01-24T01:45:00.000Z
+        console.log(startStamp.setSeconds(0, 0));    // 1611452700000
+        let departureTimestamp = startStamp.getTime() - 1;
+        departureTimestamp += 30 * 60 * 1000;
+        console.log(departureTimestamp);    // 1611454499999 2021-01-24 10:14:59
+
+        const intervalMillionSeconds = 30 * 60 * 1000;
+        console.log(departureTimestamp / intervalMillionSeconds);   // 895252.4999994445
+        const tmp = departureTimestamp / intervalMillionSeconds - 0.5;
+        console.log(tmp);               // 895251.9999994445
+        console.log(Math.round(tmp));   // 895252
+        departureTimestamp = Math.round(tmp) * intervalMillionSeconds;
+        console.log(departureTimestamp);    // 1611453600000
+
+        const tmpTimeStamp = roundDepartureTime(startStamp, 30);
+        console.log(tmpTimeStamp);
+    });
 });
-
-
-
-function roundDepartureTime(departureTime: Date, timeInterval: number): Date {
-    departureTime.setSeconds(0, 0);
-    let departureTimestamp = departureTime.getTime() - 1;
-    departureTimestamp += timeInterval * 60 * 1000;
-
-    const intervalMillionSeconds = timeInterval * 60 * 1000;
-    departureTimestamp = Math.round(departureTimestamp / intervalMillionSeconds - 0.5) * intervalMillionSeconds;
-    return new Date(departureTimestamp);
-}
-
-console.log("---------------------");
-// 2021-01-24 9:45:00
-const startStamp = new Date(1611452700000);
-console.log("startStamp:", startStamp);     // 2021-01-24T01:45:00.000Z
-console.log(startStamp.setSeconds(0, 0));    // 1611452700000
-let departureTimestamp = startStamp.getTime() - 1;
-departureTimestamp += 30 * 60 * 1000;
-console.log(departureTimestamp);    // 1611454499999 2021-01-24 10:14:59
-
-const intervalMillionSeconds = 30 * 60 * 1000;
-console.log(departureTimestamp / intervalMillionSeconds);   // 895252.4999994445
-const tmp = departureTimestamp / intervalMillionSeconds - 0.5;
-console.log(tmp);               // 895251.9999994445
-console.log(Math.round(tmp));   // 895252
-departureTimestamp = Math.round(tmp) * intervalMillionSeconds;
-console.log(departureTimestamp);    // 1611453600000
-
-const tmpTimeStamp = roundDepartureTime(startStamp, 30);
-console.log(tmpTimeStamp);
