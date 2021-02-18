@@ -1,0 +1,8 @@
+{
+    "testExplorer.addToEditorContextMenu": true,
+    "mochaExplorer.debuggerConfig": "",
+    "mochaExplorer.exit": true,
+    "mochaExplorer.files": "src/**/*.spec.ts",
+    "mochaExplorer.require": "ts-node/register/transpile-only",
+    "editor.formatOnSave": true
+}
