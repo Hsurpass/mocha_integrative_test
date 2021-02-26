@@ -5,8 +5,8 @@ describe("date", () => {
         console.log(new Date());    // UTC 时间
         console.log(new Date().getTime());  // 本地时间戳
 
-        let timestamp = 1611453600000;      // 2021-01-24 10:00:00 北京时间
-        const date = new Date(timestamp);
+        const timeStamp = 1611453600000;      // 2021-01-24 10:00:00 北京时间
+        const date = new Date(timeStamp);
         console.log(date);                  // 2021-01-24T02:00:00.000Z UTC时间
         console.log(date.getTime());        // 1611453600000
         console.log(date.getTime() - 1);    // 1611453599999 
