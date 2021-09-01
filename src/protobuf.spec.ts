@@ -1,4 +1,4 @@
-// import pb from "testChinese_pb.js"
+import { load } from "protobufjs"
 
 var pb = require("./testChinese_pb.js")
 
@@ -8,6 +8,7 @@ describe("protobuf", () => {
         var chi = new pb.chinese();
         chi.setOld(10);
         chi.setName("xiaoming");
+
         // chi.setCompany("谷歌");
         chi.setNumber(100);
         console.log(chi.getOld());
